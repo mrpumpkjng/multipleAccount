@@ -161,7 +161,7 @@ Repeat the process for your githubWork account.
 To add remote
 
 ```
-git remote add origin git@personnal:mrpumpkjng/multipleAccount.git
+git remote add origin git@personal:mrpumpkjng/multipleAccount.git
 ```
 
 To clone repo
@@ -174,4 +174,10 @@ To use the work user email
 
 ```
 git setpromail
+git config user.email
 ```
+
+# Ref :
+
+- https://stackoverflow.com/questions/4220416/can-i-specify-multiple-users-for-myself-in-gitconfig
+- https://dev.to/raven404/managing-multiple-github-account-using-git-in-windows-2m0h
