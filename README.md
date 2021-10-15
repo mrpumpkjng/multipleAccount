@@ -3,25 +3,20 @@
 So let's consider your two GitHub accounts are named githubPersonal and githubWork, respectively.
 
 ### Create two SSH keys, saving each to a separate file:
-
-Execute the below mentioned commands in gitbash
+please use gitbash
 
 ```
 cd ~/.ssh
 ssh-keygen -t rsa -C "your_email_id_associated_with_githubPersonal_account
-```
-
-save it as id_rsa_personal when prompted (you can rename personal)
-
-```
+# save it as id_rsa_personal when prompted (you can rename personal)
 Enter passphrase (empty for no passphrase): skip this by pressing enter
 Enter same passphrase again: skip this by pressing enter
+
 ssh-keygen -t rsa -C "your_email_id_associated_with_githubWork_account"
-
-save it as id_rsa_work when prompted (you can rename personal)
-
+# save it as id_rsa_work when prompted (you can rename personal)
 Enter passphrase (empty for no passphrase): skip this by pressing enter
 Enter same passphrase again: skip this by pressing enter
+
 ```
 
 The above commands setup the following files:
@@ -32,8 +27,6 @@ The above commands setup the following files:
 - id_rsa_work.pub
 
 Add the keys to your Github accounts:
-
-Copy the key to your clipboard by opening the file in vs code:
 
 ```
 code . id_rsa_personal.pub
@@ -48,29 +41,27 @@ Click “Add key” then enter your GitHub password to confirm.
 
 Repeat the process for your githubWork account.
 
-Create a configuration file
+### Create a configuration file
 
-Create a configuration file to manage the separate keys in ~/.ssh/ using
+
 
 ```
+# Create a configuration file to manage the separate keys in ~/.ssh/
 touch config
-```
 
-Edit the file using the text editor of your choice. I used vs code -
-
-```
+# Edit the file using the text editor of your choice. I used vs code -
 code . config
 ```
 
 ```
-\# githubPersonal
+# githubPersonal
 
 Host personal
 HostName github.com
 User git
 IdentityFile ~/.ssh/id_rsa_personal
 
-\# githubWork
+# githubWork
 
 Host work
 HostName github.com
@@ -78,36 +69,30 @@ User git
 IdentityFile ~/.ssh/id_rsa_work
 ```
 
-Update stored identities
+### Update stored identities
 
-initialize the ssh-agent (use powershell)
+
 
 ```
+# initialize the ssh-agent (use powershell)
 Get-Service -Name ssh-agent | Set-Service -StartupType Manual
-```
 
-Clear currently stored identities:
 
-```
+# Clear currently stored identities (use gitbash)
 ssh-add -D
-```
 
-Add new keys:
+# Add new keys:
 
-```
 ssh-add id_rsa_personal
 ssh-add id_rsa_work
-```
 
-Test to make sure new keys are stored:
+# Test to make sure new keys are stored:
 
-```
 ssh-add -l
-```
 
-Test to make sure Github recognizes the keys:
 
-```
+# Test to make sure Github recognizes the keys:
+
 ssh -T personal
 Hi githubPersonal! You've successfully authenticated, but GitHub does not provide shell access.
 
@@ -145,6 +130,7 @@ Repeat the process for your githubWork account.
 # Changing git user.email
 
 ```
+# ~/.gitconfig
 [user]
     name = Arnaud Rinquin
     email = rinquin.arnaud@gmail.com
@@ -157,22 +143,15 @@ Repeat the process for your githubWork account.
 ```
 
 # useful commands
-
-To add remote
-
 ```
+# To add remote
 git remote add origin git@personal:mrpumpkjng/multipleAccount.git
-```
 
-To clone repo
-
-```
+# To clone repo
 git clone git@work:antbou/test.git
-```
 
-To use the work user email
+# To use the work user email
 
-```
 git setpromail
 git config user.email
 ```
