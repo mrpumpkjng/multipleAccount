@@ -119,7 +119,7 @@ touch readme.md
 git init
 git add .
 git commit -am "first commit"
-git remote add origin git@personal:githubPersonal/test-personal.git
+git remote add origin git@work:antbou/CLD1.git
 git push origin master
 ```
 
